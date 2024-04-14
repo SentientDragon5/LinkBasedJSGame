@@ -1,58 +1,206 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Vignette",
+    "Credits": "",
+    "InitialLocation": "Start",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Start": {
+            "Body": "Your eyes open, the room is dim, with only one hanging light in the middle. You sit at a clean table in the center of the room. The metal chair is cold against your barearms. You feel thick cuffs on your wrists and can see a red light on them blinking slowly.",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
+                    "Text": "Next",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": []
                 }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+        "Hub": {
+            "Body": "What shall you do?",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Struggle",
+                    "Target": "Struggle",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": []
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Look around",
+                    "Target": "Look around",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": []
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
-                }
-            ]
-        },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Shuffle to the Grate",
+                    "Target": "At Grate",
+                    "Conditions": ["saw_grate","fallen"],
+                    "ConditionsNot": ["breathed"],
+                    "Result": []
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Stand Up",
+                    "Target": "Stand Up",
+                    "Conditions": ["breathed","fallen"],
+                    "ConditionsNot": ["standing"],
+                    "Result": []
+                },
+                {
+                    "Text": "Reach for light",
+                    "Target": "Unscrew Light",
+                    "Conditions": ["standing"],
+                    "ConditionsNot": ["has_light"],
+                    "Result": []
+                },
+                {
+                    "Text": "Put light to cuff",
+                    "Target": "Make light",
+                    "Conditions": ["has_light"],
+                    "ConditionsNot": ["made_light"],
+                    "Result": []
+                },
+                {
+                    "Text": "Inspect Door",
+                    "Target": "Door",
+                    "Conditions": ["saw_door"],
+                    "ConditionsNot": [],
+                    "Result": []
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Struggle": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "You struggle and feel looser.",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": ["struggle1"],
+                    "Result": ["struggle1"]
+                },
+                {
+                    "Text": "You struggle and feel a bit looser.",
+                    "Target": "Hub",
+                    "Conditions": ["struggle1"],
+                    "ConditionsNot": ["struggle2"],
+                    "Result": ["struggle2"]
+                },
+                {
+                    "Text": "You struggle and feel marginally looser.",
+                    "Target": "Hub",
+                    "Conditions": ["struggle2"],
+                    "ConditionsNot": ["struggle3"],
+                    "Result": ["struggle3"]
+                },
+                {
+                    "Text": "You struggle until your chair fell over.",
+                    "Target": "Hub",
+                    "Conditions": ["struggle3"],
+                    "ConditionsNot": ["fallen"],
+                    "Result": ["fallen"]
+                },
+                {
+                    "Text": "You struggle but it doesnt seem to do anything.",
+                    "Target": "Hub",
+                    "Conditions": ["fallen"],
+                    "ConditionsNot": ["breathed"],
+                    "Result": []
+                },
+                {
+                    "Text": "You struggle and hit the cuff against the ground. Your right wrist is out! You can see and exposed battery and some wires from the broken part of the cuffs.",
+                    "Target": "Hub",
+                    "Conditions": ["breathed"],
+                    "ConditionsNot": [],
+                    "Result": ["broken_free"]
+                },
+                {
+                    "Text": "You struggle but it doesnt seem to do anything.",
+                    "Target": "Hub",
+                    "Conditions": ["broken_free"],
+                    "ConditionsNot": [],
+                    "Result": []
+                }
+            ]
+        },
+        "Look around": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "You look around. You can barely see anything. There is a light above the table that you are sitting at, and it makes it hard for your night vision to see into the dark walls.",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": ["fallen"],
+                    "Result": []
+                },
+                {
+                    "Text": "You look around. You can barely see anything. There is a light above the table that you were sitting at, and it makes it hard for your night vision to see into the dark walls. From your vantage point on the floor, you can see a grate on the floor.",
+                    "Target": "Hub",
+                    "Conditions": ["fallen"],
+                    "ConditionsNot": ["made_light"],
+                    "Result": ["saw_grate"]
+                },
+                {
+                    "Text": "You look around using your new makeshift wrist flashlight. The light is rather dim, but it works. There is a table that you were sitting at, shining the light at the walls, you can see a door.",
+                    "Target": "Hub",
+                    "Conditions": ["made_light"],
+                    "ConditionsNot": [],
+                    "Result": ["saw_door"]
+                }
+            ]
+        },
+        "At Grate": {
+            "Body": "You look at the grate. Sure is Grate! You breath the air. You feel invigorated.",
+            "Choices": [
+                {
+                    "Text": "Next",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": ["breathed"]
+                }
+            ]
+        },
+        "Stand Up": {
+            "Body": "You are able to stand up, but your left wrist is still has the cuff.",
+            "Choices": [
+                {
+                    "Text": "Next",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": ["standing"]
+                }
+            ]
+        },
+        "Unscrew Light": {
+            "Body": "You get onto the table, and unscrew the light.",
+            "Choices": [
+                {
+                    "Text": "Next",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": ["has_light"]
+                }
+            ]
+        },
+        "Make light": {
+            "Body": "You put the lightbulb to the exposed battery in the cuff,",
+            "Choices": [
+                {
+                    "Text": "Next",
+                    "Target": "Hub",
+                    "Conditions": [],
+                    "ConditionsNot": [],
+                    "Result": ["made_light"]
+                }
+            ]
+        },
+        "Door": {
+            "Body": "You move over to the door. For some odd reason it is unlocked. You feel uneasy. This seems to be only the beginning.",
+            "Choices": [
+            ]
         }
     }
 }
