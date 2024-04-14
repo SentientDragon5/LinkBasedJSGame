@@ -1,4 +1,5 @@
 # LinkBasedJSGame
+Play at https://sentientdragon5.github.io/LinkBasedJSGame/
 A fork of StoryGraphTool (https://github.com/rndmcnlly/StoryGraphTool.git)
 
 An exercise in building data-driven game design
