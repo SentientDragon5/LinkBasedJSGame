@@ -111,7 +111,7 @@
                     "Text": "You struggle and hit the cuff against the ground. Your right wrist is out! You can see and exposed battery and some wires from the broken part of the cuffs.",
                     "Target": "Hub",
                     "Conditions": ["breathed"],
-                    "ConditionsNot": [],
+                    "ConditionsNot": ["broken_free"],
                     "Result": ["broken_free"]
                 },
                 {
